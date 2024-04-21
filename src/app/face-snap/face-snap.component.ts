@@ -1,23 +1,50 @@
+import { Component, Input, NgModule, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { Component,OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-face-snap',
-  standalone: true,
-  imports: [DatePipe],
-  templateUrl: './face-snap.component.html',
-  styleUrl: './face-snap.component.scss'
+    selector: 'app-face-snap',
+    templateUrl: './face-snap.component.html',
+    styleUrls: ['./face-snap.component.scss']
 })
-export class FaceSnapComponent implements OnInit{
- title!: string;
- description!: string;
- createdDate!: Date;
- snaps!: number;
+export class FaceSnapComponent implements OnInit {
+    @Input() faceSnap!: FaceSnap;
 
- ngOnInit(): void {
-   this.title = 'Baxter';
-   this.description = 'Le chien qui pense ... pas';
-   this.createdDate = new Date();
-   this.snaps = 6;
- }
+    buttonText: string = 'Oh snap!';
+
+    ngOnInit(): void {
+    }
+
+    constructor(private datePipe: DatePipe) { }
+
+    onClic() {
+        if (this.buttonText === 'Oh snap!') {
+            this.faceSnap.snaps++;
+            this.buttonText = 'Oups unsnap!';
+        } else {
+            this.faceSnap.snaps--;
+            this.buttonText = 'Oh snap!';
+        }
+    };
+
+
+}
+
+import { CommonModule } from '@angular/common';
+import { FaceSnap } from '../models/face-snap.component';
+
+@NgModule({
+    declarations: [FaceSnapComponent],
+    imports: [CommonModule],
+    providers: [DatePipe],
+    exports: [FaceSnapComponent]
+})
+export class FaceSnapModule { }
+
+function ngOnInit() {
+    throw new Error('Function not implemented.');
+}
+
+
+function onSnap() {
+    throw new Error('Function not implemented.');
 }
