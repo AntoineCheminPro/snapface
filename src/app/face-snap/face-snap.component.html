@@ -2,8 +2,8 @@
   <h2>{{ faceSnap.title }}</h2>
   <p>{{ faceSnap.description }}</p>
   <img class="image" [src]="faceSnap.imageUrl" />
-  <p>Mis en ligne le : {{ faceSnap.createdDate | date: 'dd/MM/YYYY' }}</p>
-  
+  <p>Mis en ligne le : {{ faceSnap.createdDate | date : "dd/MM/YYYY" }}</p>
+  <p *ngIf="faceSnap.location">{{ faceSnap.location }}</p>
   <button (click)="onClic()">{{ buttonText }}</button>
   <p>👍🏻 {{ faceSnap.snaps }}</p>
 </div>
