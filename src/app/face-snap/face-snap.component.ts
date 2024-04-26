@@ -5,6 +5,8 @@ import { FaceSnap } from '../models/face-snap.models';
 
 @Component({
   selector: 'app-face-snap',
+  standalone: true, 
+  imports: [CommonModule, DatePipe],
   templateUrl: './face-snap.component.html',
   styleUrls: ['./face-snap.component.scss'],
 })
@@ -15,13 +17,9 @@ export class FaceSnapComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  constructor(private datePipe: DatePipe) { }
+  constructor() { }
 
-  formatDate(date: Date): string {
-    const formattedDate = this.datePipe.transform(date, 'fullDate', 'fr-FR');
-    return formattedDate ? formattedDate : 'Date non disponible';
-  }
-  
+
   onClic() {
     if (this.buttonText === 'Oh snap!') {
       this.faceSnap.snaps++;
@@ -38,10 +36,10 @@ export class FaceSnapComponent implements OnInit {
 }
 
 @NgModule({
-  declarations: [FaceSnapComponent],
+  declarations: [],
   imports: [CommonModule],
   providers: [DatePipe],
-  exports: [FaceSnapComponent],
+  exports: [],
 })
 export class FaceSnapModule { }
 
