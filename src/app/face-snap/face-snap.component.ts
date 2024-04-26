@@ -13,10 +13,15 @@ export class FaceSnapComponent implements OnInit {
 
   buttonText: string = 'Oh snap!';
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  constructor(private datePipe: DatePipe) {}
+  constructor(private datePipe: DatePipe) { }
 
+  formatDate(date: Date): string {
+    const formattedDate = this.datePipe.transform(date, 'fullDate', 'fr-FR');
+    return formattedDate ? formattedDate : 'Date non disponible';
+  }
+  
   onClic() {
     if (this.buttonText === 'Oh snap!') {
       this.faceSnap.snaps++;
@@ -38,7 +43,7 @@ export class FaceSnapComponent implements OnInit {
   providers: [DatePipe],
   exports: [FaceSnapComponent],
 })
-export class FaceSnapModule {}
+export class FaceSnapModule { }
 
 function ngOnInit() {
   throw new Error('Function not implemented.');
