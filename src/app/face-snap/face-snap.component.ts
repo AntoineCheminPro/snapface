@@ -5,6 +5,8 @@ import { FaceSnap } from '../models/face-snap.models';
 
 @Component({
   selector: 'app-face-snap',
+  standalone: true, 
+  imports: [CommonModule, DatePipe],
   templateUrl: './face-snap.component.html',
   styleUrls: ['./face-snap.component.scss'],
 })
@@ -13,28 +15,33 @@ export class FaceSnapComponent implements OnInit {
 
   buttonText: string = 'Oh snap!';
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  constructor(private datePipe: DatePipe) {}
+  constructor() { }
+
 
   onClic() {
     if (this.buttonText === 'Oh snap!') {
       this.faceSnap.snaps++;
       this.buttonText = 'Oups unsnap!';
+      this.faceSnap.isSnapped = !this.faceSnap.isSnapped;
+      console.log('🚀 ~ FaceSnapComponent ~ onClic ~ faceSnap:', this.faceSnap);
     } else {
       this.faceSnap.snaps--;
       this.buttonText = 'Oh snap!';
+      this.faceSnap.isSnapped = !this.faceSnap.isSnapped;
+      console.log('🚀 ~ FaceSnapComponent ~ onClic ~ faceSnap:', this.faceSnap);
     }
   }
 }
 
 @NgModule({
-  declarations: [FaceSnapComponent],
+  declarations: [],
   imports: [CommonModule],
   providers: [DatePipe],
-  exports: [FaceSnapComponent],
+  exports: [],
 })
-export class FaceSnapModule {}
+export class FaceSnapModule { }
 
 function ngOnInit() {
   throw new Error('Function not implemented.');
